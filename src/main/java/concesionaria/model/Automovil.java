@@ -1,6 +1,5 @@
-package model;
+package concesionaria.model;
 
-import java.lang.reflect.Array;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
