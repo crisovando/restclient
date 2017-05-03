@@ -12,7 +12,7 @@ $(function () {
     $('#deleteModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var id = button.data('id');
-
+        debugger;
         var modal = $(this);
         modal.find('#hddId').val(id);
     });

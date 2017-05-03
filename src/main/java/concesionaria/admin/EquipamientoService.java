@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class EquipamientoService {
@@ -32,6 +34,16 @@ public class EquipamientoService {
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put("https://apiconcesionaria.herokuapp.com/v1/equipamiento", equipamiento);
+        return true;
+    }
+
+    public Boolean deleteObject(String id){
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id", id);
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete("https://apiconcesionaria.herokuapp.com/v1/equipamiento", params);
         return true;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 
@@ -16,16 +17,11 @@ import java.io.IOException;
  * Created by fabia on 01/05/2017.
  */
 @Controller
-public class AdminController {
+public class EquipamientoController {
 
     private final EquipamientoService equipamientoService;
 
-    @ModelAttribute("module")
-    String module() {
-        return "admin";
-    }
-
-    public AdminController(EquipamientoService equipamientoService){
+    public EquipamientoController(EquipamientoService equipamientoService){
         this.equipamientoService = equipamientoService;
     }
 
@@ -35,10 +31,17 @@ public class AdminController {
         return "admin/equip_list";
     }
 
-    @PutMapping(value = "/equip")
-    public String equip(Equipamiento equipamiento, Model model) throws IOException {
+    @PostMapping("/equip")
+    public RedirectView equip(Equipamiento equipamiento) throws IOException {
         equipamientoService.putObject(equipamiento);
-        model.addAttribute("equips", equipamientoService.findAll());
-        return "admin/equip_list";
+
+        return new RedirectView("/equip");
+    }
+
+    @PostMapping("/equip_del")
+    public RedirectView equip(@PathVariable String id) throws IOException {
+        equipamientoService.deleteObject(id);
+
+        return new RedirectView("/equip");
     }
 }
