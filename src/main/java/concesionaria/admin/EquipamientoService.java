@@ -16,13 +16,15 @@ import java.util.Map;
 @Service
 public class EquipamientoService {
 
+    private String urlApi = "https://apiconcesionaria.herokuapp.com/v1/equipamiento";
+
     public EquipamientoService(){}
 
     public Equipamiento[] findAll() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<String> autoResponse = restTemplate.exchange("https://apiconcesionaria.herokuapp.com/v1/equipamiento",
+        ResponseEntity<String> autoResponse = restTemplate.exchange(urlApi,
                 HttpMethod.GET,null, String.class);
 
         Equipamiento[] obj = mapper.readValue(autoResponse.getBody(), Equipamiento[].class);
@@ -33,17 +35,16 @@ public class EquipamientoService {
     public Boolean putObject(Equipamiento equipamiento){
 
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put("https://apiconcesionaria.herokuapp.com/v1/equipamiento", equipamiento);
+        restTemplate.put(urlApi, equipamiento);
         return true;
     }
 
     public Boolean deleteObject(String id){
-
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("id", id);
+        StringBuilder sb = new StringBuilder();
+        sb.append(urlApi).append("/").append(id);
 
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete("https://apiconcesionaria.herokuapp.com/v1/equipamiento", params);
+        restTemplate.delete(sb.toString());
         return true;
     }
 }

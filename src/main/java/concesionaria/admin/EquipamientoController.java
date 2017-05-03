@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
+import org.json.*;
 
 import java.io.IOException;
 
@@ -39,8 +40,9 @@ public class EquipamientoController {
     }
 
     @PostMapping("/equip_del")
-    public RedirectView equip(@PathVariable String id) throws IOException {
-        equipamientoService.deleteObject(id);
+    public RedirectView equip(@RequestBody String id) throws IOException {
+        JSONObject obj = new JSONObject(id);
+        equipamientoService.deleteObject(obj.getString("id"));
 
         return new RedirectView("/equip");
     }

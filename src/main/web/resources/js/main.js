@@ -25,10 +25,14 @@ $(function () {
         $('form.editEquip').submit();
     }
     function submitDelEquip() {
+        var data = {}
+        data["id"] = $("#hddId").val();
         $.ajax({
             url: '/equip_del',
             type: 'POST',
-            data: {id:$('#hddId').val()},
+            contentType : 'application/json;',
+            data: JSON.stringify(data),
+            processData: false,
             success: function(result) {
                 location = '/equip';
             }
