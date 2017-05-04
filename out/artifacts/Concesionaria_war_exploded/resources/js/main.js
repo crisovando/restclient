@@ -12,7 +12,7 @@ $(function () {
     $('#deleteModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var id = button.data('id');
-        debugger;
+
         var modal = $(this);
         modal.find('#hddId').val(id);
     });
@@ -25,10 +25,14 @@ $(function () {
         $('form.editEquip').submit();
     }
     function submitDelEquip() {
+        var data = {};
+        data["id"] = $("#hddId").val();
         $.ajax({
             url: '/equip_del',
             type: 'POST',
-            data: {id:$('#hddId').val()},
+            contentType : 'application/json;',
+            data: JSON.stringify(data),
+            processData: false,
             success: function(result) {
                 location = '/equip';
             }

@@ -25,7 +25,7 @@ $(function () {
         $('form.editEquip').submit();
     }
     function submitDelEquip() {
-        var data = {}
+        var data = {};
         data["id"] = $("#hddId").val();
         $.ajax({
             url: '/equip_del',
