@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Automovil {
+public class Modelo {
     private String nombre;
     private Double precio;
     private String[] opcionales;

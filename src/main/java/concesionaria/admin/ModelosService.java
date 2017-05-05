@@ -1,46 +1,44 @@
 package concesionaria.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import concesionaria.model.Equipamiento;
+import concesionaria.model.Modelo;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
+import java.util.HashMap;
 
 @Service
-public class EquipamientoService {
+public class ModelosService {
+    private String urlApi = "https://apiconcesionaria.herokuapp.com/v1/automovil";
 
-    private String urlApi = "https://apiconcesionaria.herokuapp.com/v1/equipamiento";
+    public ModelosService(){}
 
-    public EquipamientoService(){}
-
-    public Equipamiento[] findAll() throws IOException {
+    public Modelo[] findAll() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<String> autoResponse = restTemplate.exchange(urlApi,
                 HttpMethod.GET,null, String.class);
 
-        Equipamiento[] obj = mapper.readValue(autoResponse.getBody(), Equipamiento[].class);
+        Modelo[] obj = mapper.readValue(autoResponse.getBody(), Modelo[].class);
 
         return obj;
     }
 
-    public Boolean putObject(Equipamiento equipamiento){
+    public Boolean putObject(Modelo equipamiento){
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(urlApi, equipamiento);
         return true;
     }
 
-    public Boolean deleteObject(String id){
-        StringBuilder sb = new StringBuilder();
-        sb.append(urlApi).append("/").append(id);
-
+    public Boolean deleteObject(String nombre){
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("nombre",nombre);
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(sb.toString());
+        restTemplate.delete(urlApi, params);
         return true;
     }
 }

@@ -1,14 +1,9 @@
 package concesionaria.admin;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import concesionaria.model.Automovil;
 import concesionaria.model.Equipamiento;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 import org.json.*;
 

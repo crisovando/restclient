@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>modelos</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-5">
+            <input type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal" value="Nuevo">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Modelos</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th style="width: 40px"></th>
+                            <th style="width: 40px"></th>
+                        </tr>
+                        <tr th:each="model : ${models}">
+                            <td th:text="${model.nombre}">Nombre: ...</td>
+                            <td th:text="${model.precio}">Precio: ...</td>
+                            <td><a href="#" class="badge bg-blue" th:attr="data-nombre=${model.getNombre()},data-precio=${model.getPrecio()}" data-toggle="modal" data-target="#editModal">Edit</a></td>
+                            <td><a href="#" class="badge bg-red" th:attr="data-id=${model.get_id()}" data-toggle="modal" data-target="#deleteModal">Del</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Equipamiento</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" th:action="@{/equip}" class="form-horizontal editEquip">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="inputNombre" class="col-sm-2 control-label" >Nombre</label>
+
+                                <div class="col-sm-10">
+                                    <input name="nombre" type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPrecio" class="col-sm-2 control-label">Precio</label>
+
+                                <div class="col-sm-10">
+                                    <input name="precio" type="number" class="form-control" id="inputPrecio" placeholder="Precio">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btnModalEquip">Guardar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Eliminar Equipamiento</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="delete" th:action="@{/equip}" class="form-horizontal delEquip" >
+                        <input type="hidden" id="hddId" name="id">
+                    </form>
+                    <p>¿Esta seguro que desea eliminar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btnModalEquipDel">Guardar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+</body>
+</html>
