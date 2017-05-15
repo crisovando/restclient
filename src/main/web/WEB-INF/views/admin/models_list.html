@@ -51,7 +51,7 @@
                     <h4 class="modal-title">Equipamiento</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" th:action="@{/equip}" class="form-horizontal editEquip">
+                    <form method="post" th:action="@{/models}" class="form-horizontal editEquip">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="inputNombre" class="col-sm-2 control-label" >Nombre</label>
@@ -86,11 +86,12 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Eliminar Equipamiento</h4>
+                    <h4 class="modal-title">Eliminar Modelo</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="delete" th:action="@{/equip}" class="form-horizontal delEquip" >
+                    <form method="delete" th:action="@{/models}" class="form-horizontal delEquip" >
                         <input type="hidden" id="hddId" name="id">
+                        <input type="hidden" id="hddUrl" name="url" value="/models_del">
                     </form>
                     <p>¿Esta seguro que desea eliminar?</p>
                 </div>
