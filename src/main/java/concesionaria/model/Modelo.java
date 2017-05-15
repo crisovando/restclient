@@ -13,6 +13,24 @@ public class Modelo {
     private String[] opcionales;
     private String _id;
     private String query;
+    private String fechaModificacion;
+
+    public Modelo(final String nombre, final Double precio, final String[] opcionales, final String _id, final String fechaModificacion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this._id = _id;
+        this.opcionales = opcionales;
+        this.fechaModificacion = fechaModificacion;
+    }
+    public Modelo(){}
+
+    public String getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(String fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
 
     public String getNombre() {
         return nombre;

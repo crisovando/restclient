@@ -17,24 +17,25 @@ $(function () {
         modal.find('#hddId').val(id);
     });
 
-    $('.btnModalEquip').on('click', submitEditEquip);
-    $('.btnModalEquipDel').on('click', submitDelEquip)
+    $('.btnModalEquip').on('click', submitEdit);
+    $('.btnModalEquipDel').on('click', submitDel)
 
 
-    function submitEditEquip() {
+    function submitEdit() {
         $('form.editEquip').submit();
     }
-    function submitDelEquip() {
-        var data = {};
+    function submitDel() {
+        var data = {},
+            url = $('#hddUrl').val();
         data["id"] = $("#hddId").val();
         $.ajax({
-            url: '/equip_del',
+            url: url,
             type: 'POST',
             contentType : 'application/json;',
             data: JSON.stringify(data),
             processData: false,
             success: function(result) {
-                location = '/equip';
+                location = location;
             }
         });
     }
