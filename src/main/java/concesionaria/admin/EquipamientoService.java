@@ -12,7 +12,7 @@ import java.io.IOException;
 @Service
 public class EquipamientoService {
 
-    private String urlApi = "http://localhost:5000/v1/equipamiento";
+    private String urlApi = "http://apiconcesionaria.herokuapp.com/v1/equipamiento";
 
     public EquipamientoService(){}
 

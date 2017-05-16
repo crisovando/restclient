@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Service
 public class ModelosService {
-    private String urlApi = "http://localhost:5000/v1/automovil";
+    private String urlApi = "http://apiconcesionaria.herokuapp.com/v1/automovil";
 
     public ModelosService(){}
 

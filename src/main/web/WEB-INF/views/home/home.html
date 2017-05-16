@@ -7,19 +7,33 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <td>ID</td>
-                <td>Title</td>
-                <td>Text</td>
-                <td>Due to</td>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Modelos</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th style="width: 40px"></th>
+                                <th style="width: 40px"></th>
+                            </tr>
+                            <tr th:each="model : ${models}">
+                                <td th:text="${model.nombre}">Nombre: ...</td>
+                                <td th:text="${model.precio}">Precio: ...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
